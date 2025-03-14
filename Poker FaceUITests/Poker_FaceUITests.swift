@@ -29,7 +29,7 @@ final class Poker_FaceUITests: XCTestCase {
         
         // Ensure that text elements are visible
         XCTAssertTrue(app.staticTexts["King of Diamonds"].isHittable)
-        XCTAssertTrue(app.staticTexts["Any Pair of Natural Sevens"].isHittable)
+        XCTAssertTrue(app.staticTexts["A Pair of Natural Sevens"].isHittable)
         XCTAssertTrue(app.staticTexts["Play Standard Seven-Card Stud"].isHittable)
         
         // Ensure that deferred steps are shown after tapping the "Show Steps" button
