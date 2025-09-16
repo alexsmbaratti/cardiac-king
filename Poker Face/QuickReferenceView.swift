@@ -9,7 +9,7 @@ import SwiftUI
 
 // TODO: Abstract into sheet and window
 struct QuickReferenceView: View {
-    @Binding var isShowing: Bool
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack {
@@ -23,7 +23,7 @@ struct QuickReferenceView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
                     Button(action: {
-                        isShowing = false
+                        dismiss()
                     }, label: {
                         Text("Done")
                     })
@@ -127,6 +127,6 @@ struct CardView: View {
 
 struct QuickReferenceView_Previews: PreviewProvider {
     static var previews: some View {
-        QuickReferenceView(isShowing: .constant(true))
+        QuickReferenceView()
     }
 }

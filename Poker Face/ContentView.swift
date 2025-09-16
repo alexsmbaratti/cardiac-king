@@ -76,7 +76,7 @@ struct ContentView: View {
         })
 #if os(iOS)
         .sheet(isPresented: $showQuickReference, content: {
-            QuickReferenceView(isShowing: $showQuickReference)
+            QuickReferenceView()
         })
 #endif
         .sheet(isPresented: $showDisclaimer) {
