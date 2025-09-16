@@ -29,6 +29,8 @@
 		FAEF31A129467EA200B9F75C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEF31A029467EA200B9F75C /* Preview Assets.xcassets */; };
 		FAEF31A829467EB900B9F75C /* QuickReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF31A729467EB900B9F75C /* QuickReferenceView.swift */; };
 		FAEF31AA29467FCA00B9F75C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF31A929467FCA00B9F75C /* Card.swift */; };
+		FAFF88FF2E7921F30027B9E3 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = FAFF88FE2E7921F30027B9E3 /* AppIcon.icon */; };
+		FAFF89002E7921F30027B9E3 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = FAFF88FE2E7921F30027B9E3 /* AppIcon.icon */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,7 @@
 		FAEF31A029467EA200B9F75C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FAEF31A729467EB900B9F75C /* QuickReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickReferenceView.swift; sourceTree = "<group>"; };
 		FAEF31A929467FCA00B9F75C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		FAFF88FE2E7921F30027B9E3 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -193,6 +196,7 @@
 				FABCA5282D74E66200CE57F8 /* Poker Face visionOS */,
 				FA3D67F02D7C0E4F002837A0 /* Poker FaceUITests */,
 				FAEF319729467EA100B9F75C /* Products */,
+				FAFF88FE2E7921F30027B9E3 /* AppIcon.icon */,
 			);
 			sourceTree = "<group>";
 		};
@@ -410,6 +414,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAFF88FF2E7921F30027B9E3 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +431,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAFF89002E7921F30027B9E3 /* AppIcon.icon in Resources */,
 				FAEF31A129467EA200B9F75C /* Preview Assets.xcassets in Resources */,
 				FAD893DA2953F46200B3C871 /* games.json in Resources */,
 				FAEF319E29467EA200B9F75C /* Assets.xcassets in Resources */,
