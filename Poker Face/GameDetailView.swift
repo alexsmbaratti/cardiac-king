@@ -76,7 +76,6 @@ struct HowToView: View {
                                     .fontWeight(.medium)
                                     .foregroundColor(.secondary)
                                 Button(action: {
-                                    // Animate the expansion
                                     withAnimation(.easeInOut(duration: 0.4)) {
                                         collapseDeferredSteps = false
                                     }
@@ -297,25 +296,38 @@ struct StepView: View {
                     }
                 }
                 if step.offerQuickReference != nil && step.offerQuickReference! {
-                    HStack {
+                    if #available(iOS 26.0, *) {
                         Button(action: handleQuickReferenceTap) {
                             Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
                                 .fontWeight(.semibold)
                                 .font(.headline)
                                 .padding()
-#if !os(visionOS)
-                                .foregroundColor(.white) // Needed to prevent green text on iOS
-                                .background(.primary) // Needed to give button accent color on iOS
-#else
-                                .backgroundStyle(.primary)
-#endif
-                                .cornerRadius(20)
                         }
-                        .accessibilityIdentifier("quickReferenceButton")
-#if !os(iOS)
-                        .disabled(openWindows.contains("quick-reference"))
-#endif
-                        Spacer()
+                        .buttonStyle(.glass)
+                        .tint(.accentColor)
+                    } else {
+                        // Fallback on earlier versions
+                        HStack {
+                            Button(action: handleQuickReferenceTap) {
+                                Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
+                                    .fontWeight(.semibold)
+                                    .font(.headline)
+                                    .padding()
+                                // TODO: Check this works on visionOS 26 and iOS 18
+    #if !os(visionOS)
+                                    .foregroundColor(.white) // Needed to prevent green text on iOS
+                                    .background(.primary) // Needed to give button accent color on iOS
+    #else
+                                    .backgroundStyle(.primary)
+    #endif
+                                    .cornerRadius(20)
+                            }
+                            .accessibilityIdentifier("quickReferenceButton")
+    #if !os(iOS)
+                            .disabled(openWindows.contains("quick-reference"))
+    #endif
+                            Spacer()
+                        }
                     }
                 }
             }
