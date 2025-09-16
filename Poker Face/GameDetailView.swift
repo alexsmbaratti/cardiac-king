@@ -56,78 +56,88 @@ struct GameDetailView: View {
 struct HowToView: View {
     var steps: [Instruction]
     var deferredFormat: GameFormat?
-    
+
     @State var collapseDeferredSteps = true
-    
+
     @Binding var showQuickReference: Bool
     @Binding var openWindows: Set<String>
-    
+
     var body: some View {
-        if !steps.isEmpty {
-            if deferredFormat != nil && collapseDeferredSteps {
+        VStack {
+            if !steps.isEmpty {
+                VStack {
+                    if deferredFormat != nil && collapseDeferredSteps {
+                        // Collapsed view
+                        HStack {
+                            Spacer()
+                            VStack {
+                                Text("Play Standard \(deferredFormat!.name)")
+                                    .font(.headline)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.secondary)
+                                Button(action: {
+                                    // Animate the expansion
+                                    withAnimation(.easeInOut(duration: 0.4)) {
+                                        collapseDeferredSteps = false
+                                    }
+                                }) {
+                                    Label("Show Steps", systemImage: "list.bullet")
+                                        .fontWeight(.semibold)
+                                        .font(.headline)
+                                        .padding()
+#if !os(visionOS)
+                                        .foregroundColor(.white)
+                                        .background(.primary)
+#else
+                                        .backgroundStyle(.primary)
+#endif
+                                        .cornerRadius(20)
+                                }
+                                .accessibilityIdentifier("showDeferredStepsButton")
+                            }
+                            Spacer()
+                        }
+                        .padding()
+                    }
+
+                    // Expanded steps (or same view if collapsed steps are gone)
+                    if !collapseDeferredSteps {
+                        VStack(spacing: 10) {
+                            ForEach(0..<steps.count, id: \.self) { index in
+                                StepView(
+                                    num: index + 1,
+                                    step: steps[index],
+                                    showQuickReference: $showQuickReference,
+                                    openWindows: $openWindows
+                                )
+                            }
+                        }
+                        .padding()
+                        .transition(.opacity) // optional, subtle fade
+                    }
+                }
+                .background(
+                    RoundedRectangle(cornerRadius: 4, style: .continuous)
+                        .foregroundColor(Color(.systemFill))
+                        .shadow(radius: 7)
+                )
+                .animation(.easeInOut(duration: 0.4), value: collapseDeferredSteps)
+            } else {
                 HStack {
                     Spacer()
-                    VStack {
-                        Text("Play Standard \(deferredFormat!.name)")
-                            .font(.headline)
-                            .fontWeight(.medium)
-                            .foregroundColor(.secondary)
-                        Button(action: {
-                            collapseDeferredSteps = false
-                        }) {
-                            Label("Show Steps", systemImage: "list.bullet")
-                                .fontWeight(.semibold)
-                                .font(.headline)
-                                .padding()
-#if !os(visionOS)
-                                .foregroundColor(.white) // Needed to prevent green text on iOS
-                                .background(.primary) // Needed to give button accent color on iOS
-#else
-                                .backgroundStyle(.primary)
-#endif
-                                .cornerRadius(20)
-                        }
-                        .accessibilityIdentifier("showDeferredStepsButton")
-                    }
+                    Text("No Steps")
+                        .font(.title)
+                        .fontWeight(.medium)
+                        .foregroundColor(.secondary)
                     Spacer()
                 }
-                .padding(.all)
-                .aspectRatio(contentMode: .fill)
-                .background(
-                    RoundedRectangle(cornerRadius: 4, style: .continuous)
-                        .foregroundColor(Color(.systemFill))
-                        .shadow(radius: 7)
-                )
-            } else {
-                VStack {
-                    ForEach(0..<steps.count, id: \.self) { index in
-                        StepView(num: index + 1, step: steps[index], showQuickReference: $showQuickReference, openWindows: $openWindows)
-                    }
-                }
-                .padding(.all)
-                .aspectRatio(contentMode: .fill)
+                .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 4, style: .continuous)
                         .foregroundColor(Color(.systemFill))
                         .shadow(radius: 7)
                 )
             }
-        } else {
-            HStack {
-                Spacer()
-                Text("No Steps")
-                    .font(.title)
-                    .fontWeight(.medium)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
-            .padding(.all)
-            .aspectRatio(contentMode: .fill)
-            .background(
-                RoundedRectangle(cornerRadius: 4, style: .continuous)
-                    .foregroundColor(Color(.systemFill))
-                    .shadow(radius: 7)
-            )
         }
     }
 }
