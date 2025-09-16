@@ -288,16 +288,7 @@ struct StepView: View {
                 }
                 if step.offerQuickReference != nil && step.offerQuickReference! {
                     HStack {
-                        Button(action: {
-#if !os(iOS)
-                            if !openWindows.contains("quick-reference") {
-                                openWindow(id: "quick-reference")
-                                openWindows.insert("quick-reference")
-                            }
-#else
-                            showQuickReference = true
-#endif
-                        }) {
+                        Button(action: handleQuickReferenceTap) {
                             Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
                                 .fontWeight(.semibold)
                                 .font(.headline)
@@ -321,6 +312,17 @@ struct StepView: View {
             .padding(.leading)
             Spacer()
         }
+    }
+    
+    private func handleQuickReferenceTap() {
+#if !os(iOS)
+        if !openWindows.contains("quick-reference") {
+            openWindow(id: "quick-reference")
+            openWindows.insert("quick-reference")
+        }
+#else
+        showQuickReference = true
+#endif
     }
 }
 

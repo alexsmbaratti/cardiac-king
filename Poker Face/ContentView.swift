@@ -44,16 +44,7 @@ struct ContentView: View {
             .navigationTitle("Cardiac King")
             .toolbar {
                 ToolbarItem(placement: sizeClass == .compact ? .topBarLeading : .topBarTrailing, content: {
-                    Button(action: {
-#if !os(iOS)
-                        if !openWindows.contains("quick-reference") {
-                            openWindow(id: "quick-reference")
-                            openWindows.insert("quick-reference")
-                        }
-#else
-                        showQuickReference = true
-#endif
-                    }, label: {
+                    Button(action: handleQuickReferenceTap, label: {
                         Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
                     })
                     .accessibilityIdentifier("universalQuickReferenceButton")
@@ -90,6 +81,17 @@ struct ContentView: View {
         .sheet(isPresented: $showDisclaimer) {
             DisclaimerView(isPresented: $showDisclaimer)
         }
+    }
+    
+    private func handleQuickReferenceTap() {
+#if !os(iOS)
+        if !openWindows.contains("quick-reference") {
+            openWindow(id: "quick-reference")
+            openWindows.insert("quick-reference")
+        }
+#else
+        showQuickReference = true
+#endif
     }
 }
 
