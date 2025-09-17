@@ -54,6 +54,7 @@ struct GameDetailView: View {
             .padding([.leading, .bottom, .trailing])
         }
         .navigationTitle(game.name)
+#if !os(visionOS)
         .background(
             LinearGradient(
                 gradient: Gradient(colors: [
@@ -65,6 +66,7 @@ struct GameDetailView: View {
             )
             .ignoresSafeArea(edges: .top)
         )
+#endif
     }
 }
 
