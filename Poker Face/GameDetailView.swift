@@ -17,10 +17,9 @@ struct GameDetailView: View {
     var body: some View {
         ScrollView {
             Group {
-                // TODO: Add winning hand and special cards sections
-                if game.format != nil {
+                if let format = game.format {
                     HStack {
-                        Text(game.format!.name + " Format")
+                        Text("\(format.name) Format")
                             .foregroundStyle(.secondary)
                             .font(.headline)
                             .italic()
@@ -41,7 +40,12 @@ struct GameDetailView: View {
                     CardBunchReferenceView(cardBunches: game.winningHands)
                 }
                 Heading(text: "How to Play")
-                HowToView(steps: game.steps, deferredFormat: game.deferToFormat ?? false ? game.format : nil, showQuickReference: $showQuickReference, openWindows: $openWindows)
+                HowToView(
+                    steps: game.steps,
+                    deferredFormat: game.deferToFormat ?? false ? game.format : nil,
+                    showQuickReference: $showQuickReference,
+                    openWindows: $openWindows
+                )
                 if game.hasVariants() {
                     Heading(text: "Variants")
                     VariantsView(variants: game.variants)
@@ -50,8 +54,20 @@ struct GameDetailView: View {
             .padding([.leading, .bottom, .trailing])
         }
         .navigationTitle(game.name)
+        .background(
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color.accentColor.opacity(0.5),
+                    Color.clear
+                ]),
+                startPoint: .top,
+                endPoint: .center
+            )
+            .ignoresSafeArea(edges: .top)
+        )
     }
 }
+
 
 struct HowToView: View {
     var steps: [Instruction]
