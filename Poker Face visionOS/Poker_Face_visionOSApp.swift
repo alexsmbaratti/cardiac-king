@@ -19,7 +19,7 @@ struct Poker_Face_visionOSApp: App {
         .windowResizability(.contentSize)
 
         WindowGroup(id: "quick-reference") {
-            QuickReferenceView(isShowing: .constant(true))
+            QuickReferenceView()
                 .frame(minWidth: 600, maxWidth: 600, minHeight: 600)
                 .onDisappear(perform: {
                     openWindows.remove("quick-reference")
