@@ -2,6 +2,7 @@
     {
         "id": 0,
         "name": "Five-Card Draw",
+        "icon": "5.circle",
         "wildCards": [],
         "wildRanks": [],
         "wildCustoms": [],
@@ -64,6 +65,7 @@
     {
         "id": 1,
         "name": "Seven-Card Stud",
+        "icon": "7.circle",
         "wildCards": [],
         "wildRanks": [],
         "wildCustoms": [],
@@ -111,6 +113,7 @@
     {
         "id": 2,
         "name": "Baseball",
+        "icon": "baseball",
         "wildCards": [],
         "wildRanks": [ 3, 9 ],
         "wildCustoms": [],
@@ -186,6 +189,7 @@
     {
         "id": 3,
         "name": "Football",
+        "icon": "american.football",
         "wildCards": [],
         "wildRanks": [ 4 ],
         "wildCustoms": [ "Sixes if paired with an Ace" ],
@@ -261,6 +265,7 @@
     {
         "id": 4,
         "name": "Screwball",
+        "icon": "screwdriver",
         "wildCards": [ {
             "rank": 13,
             "suit": 1,
@@ -329,6 +334,7 @@
     {
         "id": 5,
         "name": "727",
+        "icon": "27.circle",
         "wildCards": [],
         "wildRanks": [],
         "wildCustoms": [],
@@ -416,6 +422,7 @@
     {
         "id": 7,
         "name": "Follow the Queen",
+        "icon": "crown",
         "wildCards": [],
         "wildRanks": [ 12 ],
         "wildCustoms": ["Any Card Following the Last Face Up Queen"],
@@ -464,6 +471,7 @@
     {
         "id": 8,
         "name": "Jack the Shifter",
+        "icon": "gearshift.layout.sixspeed",
         "wildCards": [],
         "wildRanks": [],
         "wildCustoms": ["Depends on the Game Chosen"],
@@ -482,6 +490,7 @@
     {
         "id": 11,
         "name": "High Card",
+        "icon": "a.circle",
         "wildCards": [],
         "wildRanks": [],
         "wildCustoms": [],

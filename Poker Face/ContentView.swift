@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var showRandomGame = false
     @State var showQuickReference = false
     @State var selectedGame: Game? = nil
     
@@ -45,7 +46,7 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing, content: {
                     Button(action: {
-                        // TODO: Implement
+                        showRandomGame = true
                     }, label: {
                         Label("Random Game", systemImage: "die.face.6")
                     })
@@ -92,6 +93,9 @@ struct ContentView: View {
         .sheet(isPresented: $showDisclaimer) {
             DisclaimerView(isPresented: $showDisclaimer)
         }
+        .sheet(isPresented: $showRandomGame, content: {
+            RandomGameView(parentSelectedGame: $selectedGame)
+        })
     }
     
     private func handleQuickReferenceTap() {
