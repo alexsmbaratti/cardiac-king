@@ -48,7 +48,6 @@ struct Game: Identifiable, Hashable, Codable {
 struct Instruction: Hashable, Codable {
     var description: String
     var subtext: String?
-    var offerQuickReference: Bool?
 }
 
 enum InstructionType: Int, Codable {
