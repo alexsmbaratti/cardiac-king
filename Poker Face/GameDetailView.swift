@@ -54,18 +54,29 @@ struct GameDetailView: View {
             .padding([.leading, .bottom, .trailing])
         }
         .navigationTitle(game.name)
-#if !os(visionOS)
-        .background(
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color.accentColor.opacity(0.5),
-                    Color.clear
-                ]),
-                startPoint: .top,
-                endPoint: .center
-            )
-            .ignoresSafeArea(edges: [.top, .leading, .trailing])
-        )
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing, content: {
+                Button(action: handleQuickReferenceTap, label: {
+                    Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
+                })
+                .accessibilityIdentifier("universalQuickReferenceButton")
+#if !os(iOS)
+                .disabled(openWindows.contains("quick-reference"))
+#endif
+            })
+            // TODO: Pick random game
+        }
+        .accentGradientBackground()
+    }
+    
+    private func handleQuickReferenceTap() {
+#if !os(iOS)
+        if !openWindows.contains("quick-reference") {
+            openWindow(id: "quick-reference")
+            openWindows.insert("quick-reference")
+        }
+#else
+        showQuickReference = true
 #endif
     }
 }

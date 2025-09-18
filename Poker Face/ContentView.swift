@@ -131,6 +131,32 @@ struct DisclaimerView: View {
     }
 }
 
+struct AccentGradientBackground: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+#if !os(visionOS)
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color.accentColor.opacity(0.5),
+                        Color.clear
+                    ]),
+                    startPoint: .top,
+                    endPoint: .center
+                )
+                .ignoresSafeArea(edges: [.top, .leading, .trailing])
+            )
+#endif
+    }
+}
+
+extension View {
+    func accentGradientBackground() -> some View {
+        self.modifier(AccentGradientBackground())
+    }
+}
+
+
 #Preview {
     ContentView(openWindows: .constant([]))
 }
