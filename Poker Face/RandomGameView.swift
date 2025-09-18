@@ -48,6 +48,7 @@ struct RandomGameView: View {
                             .cornerRadius(12)
                     }
                     .disabled(isAnimating)
+                    .padding(.horizontal)
                 }
                 
                 Button(action: pickRandom) {
@@ -59,6 +60,7 @@ struct RandomGameView: View {
                         .cornerRadius(12)
                 }
                 .disabled(isAnimating)
+                .padding(.horizontal)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
@@ -70,7 +72,6 @@ struct RandomGameView: View {
                 })
             }
         }
-        .padding()
         .animation(.spring(), value: selected)
     }
     
