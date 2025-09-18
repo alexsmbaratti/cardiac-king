@@ -64,7 +64,7 @@ struct GameDetailView: View {
                 startPoint: .top,
                 endPoint: .center
             )
-            .ignoresSafeArea(edges: .top)
+            .ignoresSafeArea(edges: [.top, .leading, .trailing])
         )
 #endif
     }
