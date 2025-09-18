@@ -43,7 +43,18 @@ struct ContentView: View {
             }
             .navigationTitle("Cardiac King")
             .toolbar {
-                ToolbarItem(placement: sizeClass == .compact ? .topBarLeading : .topBarTrailing, content: {
+                ToolbarItem(placement: .topBarTrailing, content: {
+                    Button(action: {
+                        // TODO: Implement
+                    }, label: {
+                        Label("Random Game", systemImage: "die.face.6")
+                    })
+                    .tint(.accentColor)
+#if !os(iOS)
+                    .disabled(openWindows.contains("quick-reference"))
+#endif
+                })
+                ToolbarItem(placement: .topBarTrailing, content: {
                     Button(action: handleQuickReferenceTap, label: {
                         Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
                     })
@@ -52,8 +63,7 @@ struct ContentView: View {
 #if !os(iOS)
                     .disabled(openWindows.contains("quick-reference"))
 #endif
-                })
-                // TODO: Pick random game
+                }) // TODO: Ensure this isn't redundant on iPadOS/visionOS
             }
         }, detail: {
             if selectedGame != nil {
