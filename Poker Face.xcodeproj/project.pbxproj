@@ -225,10 +225,10 @@
 				FAEF319B29467EA100B9F75C /* ContentView.swift */,
 				FAB4FB9A294AE85B00B7B1D1 /* GameDetailView.swift */,
 				FAEF31A729467EB900B9F75C /* QuickReferenceView.swift */,
+				FAE8F95B2E7BD0BE00A01BF7 /* RandomGameView.swift */,
 				FAEF31A929467FCA00B9F75C /* Card.swift */,
 				FAEF319D29467EA200B9F75C /* Assets.xcassets */,
 				FAEF319F29467EA200B9F75C /* Preview Content */,
-				FAE8F95B2E7BD0BE00A01BF7 /* RandomGameView.swift */,
 			);
 			path = "Poker Face";
 			sourceTree = "<group>";

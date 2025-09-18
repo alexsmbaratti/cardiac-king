@@ -152,19 +152,24 @@ struct AccentGradientBackground: ViewModifier {
         content
 #if !os(visionOS)
             .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color.accentColor.opacity(colorScheme == .light ? 1 : 0.5),
-                        Color.clear
-                    ]),
-                    startPoint: .top,
-                    endPoint: .center
-                )
-                .ignoresSafeArea(edges: [.top, .leading, .trailing])
+                Group {
+                    if #available(iOS 26.0, *) {
+                        LinearGradient(
+                            gradient: Gradient(colors: [
+                                Color.accentColor.opacity(colorScheme == .light ? 1 : 0.5),
+                                Color.clear
+                            ]),
+                            startPoint: .top,
+                            endPoint: .center
+                        )
+                        .ignoresSafeArea(edges: [.top, .leading, .trailing])
+                    }
+                }
             )
 #endif
     }
 }
+
 
 
 extension View {

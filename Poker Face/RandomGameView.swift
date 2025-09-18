@@ -71,6 +71,8 @@ struct RandomGameView: View {
                     })
                 })
             }
+            .navigationTitle("Game Picker")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .animation(.spring(), value: selected)
     }
