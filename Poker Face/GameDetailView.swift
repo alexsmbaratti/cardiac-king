@@ -80,6 +80,28 @@ struct GameDetailView: View {
     }
 }
 
+struct                 NoGameSelectedView: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            CardView(card: Card(rank: .king, suit: .heart, side: .face_up))
+                .padding(.all)
+            Text("Select a Game")
+                .font(.title)
+                .bold()
+            if sizeClass != .compact {
+                Text("Tap the icon in the top left corner to reveal the game drawer")
+                    .font(.title2)
+            }
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .accentGradientBackground()
+    }
+}
+
 
 struct HowToView: View {
     var steps: [Instruction]

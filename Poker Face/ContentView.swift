@@ -55,34 +55,24 @@ struct ContentView: View {
                     .disabled(openWindows.contains("quick-reference"))
 #endif
                 })
-                ToolbarItem(placement: .topBarTrailing, content: {
-                    Button(action: handleQuickReferenceTap, label: {
-                        Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
-                    })
-                    .tint(.accentColor)
-                    .accessibilityIdentifier("universalQuickReferenceButton")
+                if UIDevice.current.userInterfaceIdiom == .phone {
+                    ToolbarItem(placement: .topBarTrailing, content: {
+                        Button(action: handleQuickReferenceTap, label: {
+                            Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
+                        })
+                        .tint(.accentColor)
+                        .accessibilityIdentifier("universalQuickReferenceButton")
 #if !os(iOS)
-                    .disabled(openWindows.contains("quick-reference"))
+                        .disabled(openWindows.contains("quick-reference"))
 #endif
-                }) // TODO: Ensure this isn't redundant on iPadOS/visionOS
+                    })
+                }
             }
         }, detail: {
             if selectedGame != nil {
                 GameDetailView(game: selectedGame!, showQuickReference: $showQuickReference, openWindows: $openWindows)
             } else {
-                VStack {
-                    Spacer()
-                    CardView(card: Card(rank: .king, suit: .heart, side: .face_up))
-                        .padding(.all)
-                    Text("Select a Game")
-                        .font(.title)
-                        .bold()
-                    if sizeClass != .compact {
-                        Text("Tap the icon in the top left corner to reveal the game drawer")
-                            .font(.title2)
-                    }
-                    Spacer()
-                }
+                NoGameSelectedView()
             }
         })
 #if os(iOS)
