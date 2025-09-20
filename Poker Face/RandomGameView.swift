@@ -44,10 +44,13 @@ struct RandomGameView: View {
                         Text("Play")
                             .padding()
                             .frame(maxWidth: .infinity)
-                            .background(Color.accentColor)
                             .foregroundColor(.white)
                             .cornerRadius(12)
                     }
+                    .buttonStyle(.borderedProminent)
+#if os(iOS)
+                    .tint(.accentColor)
+#endif
                     .disabled(isAnimating)
                 }
                 
@@ -55,10 +58,11 @@ struct RandomGameView: View {
                     Text("Pick Random")
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(.blue)
+                        .backgroundStyle(.blue)
                         .foregroundColor(.white)
                         .cornerRadius(12)
                 }
+                .buttonStyle(.bordered)
                 .disabled(isAnimating)
             }
             .padding()

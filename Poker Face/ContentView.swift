@@ -72,7 +72,7 @@ struct ContentView: View {
             if selectedGame != nil {
                 GameDetailView(game: selectedGame!, showQuickReference: $showQuickReference, openWindows: $openWindows)
             } else {
-                NoGameSelectedView(showQuickReference: $showQuickReference)
+                NoGameSelectedView(showQuickReference: $showQuickReference, openWindows: $openWindows)
             }
         })
 #if os(iOS)

@@ -14,6 +14,10 @@ struct GameDetailView: View {
     @Binding var openWindows: Set<String>
     @Environment(\.horizontalSizeClass) var sizeClass
     
+#if !os(iOS)
+    @Environment(\.openWindow) private var openWindow
+#endif
+    
     var body: some View {
         ScrollView {
             Group {
@@ -82,8 +86,12 @@ struct GameDetailView: View {
 
 struct NoGameSelectedView: View {
     @Binding var showQuickReference: Bool
-    
+    @Binding var openWindows: Set<String>
     @Environment(\.horizontalSizeClass) var sizeClass
+    
+#if !os(iOS)
+    @Environment(\.openWindow) private var openWindow
+#endif
     
     var body: some View {
         VStack {
