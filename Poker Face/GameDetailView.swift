@@ -1,5 +1,5 @@
 //
-//  GameView.swift
+//  GameDetailView.swift
 //  Poker Face
 //
 //  Created by Alex Baratti on 12/14/22.

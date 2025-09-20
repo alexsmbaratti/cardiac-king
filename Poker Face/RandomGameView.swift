@@ -27,7 +27,9 @@ struct RandomGameView: View {
                         .id(selected.id)
                     Text(selected.name)
                         .font(.title)
+#if os(iOS)
                         .bold()
+#endif
                 } else {
                     Image(systemName: "questionmark.circle")
                         .resizable()
@@ -42,6 +44,10 @@ struct RandomGameView: View {
                         dismiss()
                     }) {
                         Text("Play")
+#if os(iOS)
+                            .bold()
+#endif
+                            .font(.title3)
                             .padding()
                             .frame(maxWidth: .infinity)
                             .foregroundColor(.white)
@@ -56,6 +62,10 @@ struct RandomGameView: View {
                 
                 Button(action: pickRandom) {
                     Text("Pick Random")
+#if os(iOS)
+                        .bold()
+#endif
+                        .font(.title3)
                         .padding()
                         .frame(maxWidth: .infinity)
                         .backgroundStyle(.blue)
