@@ -30,16 +30,16 @@ struct RandomGameView: View {
                         if let selected = selected {
                             switch selected.id {
                             case 11:
-                                FaceUpCardView(card: Card(rank: .ace, suit: .heart))
-                                    .font(.largeTitle)
+                                CardView(card: Card(rank: .ace, suit: .heart))
+                                    .scaleEffect(2)
                                     .padding(.all, 3.0)
                             case 5:
-                                FaceUpCardView(card: Card(rank: .seven, suit: .club))
-                                    .font(.largeTitle)
+                                CardView(card: Card(rank: .seven, suit: .club))
+                                    .scaleEffect(2)
                                     .padding(.all, 3.0)
                             case 8:
-                                FaceUpCardView(card: Card(rank: .jack, suit: .diamond))
-                                    .font(.largeTitle)
+                                CardView(card: Card(rank: .jack, suit: .diamond))
+                                    .scaleEffect(2)
                                     .padding(.all, 3.0)
                             default:
                                 Image(systemName: selected.icon)
