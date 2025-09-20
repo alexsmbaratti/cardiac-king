@@ -11,6 +11,7 @@ struct RandomGameView: View {
     @State private var selected: Game?
     @State private var isAnimating = false
     @State private var flipped = false
+    @State private var fannedOut = false
     
     @Binding var parentSelectedGame: Game?
     
@@ -28,15 +29,31 @@ struct RandomGameView: View {
                         .foregroundStyle(.gray),
                     back: Group {
                         if let selected = selected {
-                            switch selected.id {
+                            switch selected.id { // TODO: Scaled CardViews are completely broken on visionOS
+                                // TODO: Clean up this view
                             case 11:
                                 CardView(card: Card(rank: .ace, suit: .heart))
                                     .scaleEffect(2)
                                     .padding(.all, 3.0)
                             case 5:
-                                CardView(card: Card(rank: .seven, suit: .club))
-                                    .scaleEffect(2)
-                                    .padding(.all, 3.0)
+                                ZStack {
+                                    CardView(card: Card(rank: .ace, suit: .heart))
+                                        .offset(x: fannedOut ? -25 : 0)
+                                                            .animation(.spring(response: 0.5, dampingFraction: 0.7), value: fannedOut)
+                                    CardView(card: Card(rank: .ace, suit: .club))
+                                        .offset(x: fannedOut ? 0 : 0)
+                                                            .animation(.spring(response: 0.5, dampingFraction: 0.7), value: fannedOut)
+                                    CardView(card: Card(rank: .seven, suit: .diamond))
+                                        .offset(x: fannedOut ? 25 : 0)
+                                                            .animation(.spring(response: 0.5, dampingFraction: 0.7), value: fannedOut)
+                                }
+                                .onAppear {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                                        fannedOut = true
+                                    }
+                                }
+                                .scaleEffect(2)
+                                .padding(.all, 3.0)
                             case 8:
                                 CardView(card: Card(rank: .jack, suit: .diamond))
                                     .scaleEffect(2)
@@ -118,6 +135,7 @@ struct RandomGameView: View {
         
         isAnimating = true
         selected = nil
+        fannedOut = false
         
         if flipped {
             flipped = false
