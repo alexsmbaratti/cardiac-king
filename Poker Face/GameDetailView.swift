@@ -64,7 +64,6 @@ struct GameDetailView: View {
                 .disabled(openWindows.contains("quick-reference"))
 #endif
             })
-            // TODO: Pick random game
         }
         .accentGradientBackground()
     }

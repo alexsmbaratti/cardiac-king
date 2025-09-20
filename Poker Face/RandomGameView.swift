@@ -18,6 +18,7 @@ struct RandomGameView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
+                Spacer()
                 if let selected = selected {
                     Image(systemName: selected.icon)
                         .resizable()
@@ -34,7 +35,7 @@ struct RandomGameView: View {
                         .frame(width: 80, height: 80)
                         .foregroundColor(.secondary)
                 }
-                
+                Spacer()
                 if !isAnimating, let selected = selected {
                     Button(action: {
                         parentSelectedGame = selected
@@ -48,7 +49,6 @@ struct RandomGameView: View {
                             .cornerRadius(12)
                     }
                     .disabled(isAnimating)
-                    .padding(.horizontal)
                 }
                 
                 Button(action: pickRandom) {
@@ -60,8 +60,8 @@ struct RandomGameView: View {
                         .cornerRadius(12)
                 }
                 .disabled(isAnimating)
-                .padding(.horizontal)
             }
+            .padding()
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
                     Button(action: {
