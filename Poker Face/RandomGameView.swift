@@ -37,10 +37,10 @@ struct RandomGameView: View {
                                     .padding(.all, 3.0)
                             case 5:
                                 ZStack {
-                                    CardView(card: Card(rank: .ace, suit: .heart))
+                                    CardView(card: Card(rank: .seven, suit: .heart))
                                         .offset(x: fannedOut ? -25 : 0)
                                                             .animation(.spring(response: 0.5, dampingFraction: 0.7), value: fannedOut)
-                                    CardView(card: Card(rank: .ace, suit: .club))
+                                    CardView(card: Card(rank: .two, suit: .club))
                                         .offset(x: fannedOut ? 0 : 0)
                                                             .animation(.spring(response: 0.5, dampingFraction: 0.7), value: fannedOut)
                                     CardView(card: Card(rank: .seven, suit: .diamond))
