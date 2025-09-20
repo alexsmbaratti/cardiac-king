@@ -80,7 +80,9 @@ struct GameDetailView: View {
     }
 }
 
-struct                 NoGameSelectedView: View {
+struct NoGameSelectedView: View {
+    @Binding var showQuickReference: Bool
+    
     @Environment(\.horizontalSizeClass) var sizeClass
     
     var body: some View {
@@ -97,8 +99,30 @@ struct                 NoGameSelectedView: View {
             }
             Spacer()
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing, content: {
+                Button(action: handleQuickReferenceTap, label: {
+                    Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
+                })
+                .accessibilityIdentifier("universalQuickReferenceButton")
+#if !os(iOS)
+                .disabled(openWindows.contains("quick-reference"))
+#endif
+            })
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .accentGradientBackground()
+    }
+    
+    private func handleQuickReferenceTap() {
+#if !os(iOS)
+        if !openWindows.contains("quick-reference") {
+            openWindow(id: "quick-reference")
+            openWindows.insert("quick-reference")
+        }
+#else
+        showQuickReference = true
+#endif
     }
 }
 
