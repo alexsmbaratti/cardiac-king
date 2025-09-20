@@ -95,23 +95,31 @@ struct CardView: View {
                 .foregroundStyle(card.isFaceUp ? .white : .gray)
                 .shadow(radius: 5)
             if card.isFaceUp {
-                HStack {
-                    VStack {
-                        label
-                        Spacer()
-                    }
-                    .dynamicTypeSize(.medium)
-                    Spacer()
-                    VStack {
-                        label
-                        Spacer()
-                    }
-                    .rotationEffect(.degrees(180))
-                }
-                .padding(.all, 3.0)
+                FaceUpCardView(card: card)
             }
         }
         .frame(width: 70, height: 100)
+    }
+}
+
+struct FaceUpCardView: View {
+    var card: Card
+    
+    var body: some View {
+        HStack {
+            VStack {
+                label
+                Spacer()
+            }
+            .dynamicTypeSize(.medium)
+            Spacer()
+            VStack {
+                label
+                Spacer()
+            }
+            .rotationEffect(.degrees(180))
+        }
+        .padding(.all, 3.0)
     }
     
     var label: some View {

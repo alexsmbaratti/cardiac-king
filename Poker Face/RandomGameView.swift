@@ -28,12 +28,27 @@ struct RandomGameView: View {
                         .foregroundStyle(.gray),
                     back: Group {
                         if let selected = selected {
-                            Image(systemName: selected.icon)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
-                                .id(selected.id)
-                                .foregroundStyle(.gray)
+                            switch selected.id {
+                            case 11:
+                                FaceUpCardView(card: Card(rank: .ace, suit: .heart))
+                                    .font(.largeTitle)
+                                    .padding(.all, 3.0)
+                            case 5:
+                                FaceUpCardView(card: Card(rank: .seven, suit: .club))
+                                    .font(.largeTitle)
+                                    .padding(.all, 3.0)
+                            case 8:
+                                FaceUpCardView(card: Card(rank: .jack, suit: .diamond))
+                                    .font(.largeTitle)
+                                    .padding(.all, 3.0)
+                            default:
+                                Image(systemName: selected.icon)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 80)
+                                    .id(selected.id)
+                                    .foregroundStyle(.gray)
+                            }
                         } else {
                             Image(systemName: "questionmark")
                         }
