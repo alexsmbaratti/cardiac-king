@@ -471,7 +471,7 @@
     {
         "id": 8,
         "name": "Jack the Shifter",
-        "icon": "gearshift.layout.sixspeed",
+        "icon": "j.circle",
         "wildCards": [],
         "wildRanks": [],
         "wildCustoms": ["Depends on the Game Chosen"],

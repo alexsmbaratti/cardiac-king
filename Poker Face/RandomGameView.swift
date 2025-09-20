@@ -25,7 +25,7 @@ struct RandomGameView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80, height: 80)
-                        .foregroundColor(.secondary),
+                        .foregroundStyle(.gray),
                     back: Group {
                         if let selected = selected {
                             Image(systemName: selected.icon)
@@ -42,6 +42,7 @@ struct RandomGameView: View {
                 if let selected = selected {
                     Text(selected.name)
                         .font(.title)
+                        .id(selected.id)
 #if os(iOS)
                         .bold()
 #endif
@@ -66,11 +67,10 @@ struct RandomGameView: View {
 #if os(iOS)
                     .tint(.accentColor)
 #endif
-                    .disabled(isAnimating)
                 }
                 
                 Button(action: pickRandom) {
-                    Text("Pick Random")
+                    Text("Pick Random Game")
 #if os(iOS)
                         .bold()
 #endif
@@ -100,17 +100,32 @@ struct RandomGameView: View {
     
     private func pickRandom() {
         guard !games.isEmpty else { return }
-        selected = games.randomElement()
+        
         isAnimating = true
-        flipped.toggle()
+        selected = nil
+        
+        if flipped {
+            flipped = false
+            Task {
+                try await Task.sleep(nanoseconds: 600_000_000)
+                updateSelection()
+            }
+        } else {
+            updateSelection()
+        }
+    }
+
+    private func updateSelection() {
+        selected = games.randomElement()
+        flipped = true
         
         Task {
             try await Task.sleep(nanoseconds: 600_000_000)
             isAnimating = false
-#if os(iOS)
-            let finalImpact = UINotificationFeedbackGenerator()
-            finalImpact.notificationOccurred(.success)
-#endif
+    #if os(iOS)
+            let haptic = UINotificationFeedbackGenerator()
+            haptic.notificationOccurred(.success)
+    #endif
         }
     }
 }
