@@ -10,6 +10,7 @@ import SwiftUI
 struct RandomGameView: View {
     @State private var selected: Game?
     @State private var isAnimating = false
+    @State private var flipped = false
     
     @Binding var parentSelectedGame: Game?
     
@@ -19,26 +20,34 @@ struct RandomGameView: View {
         NavigationStack {
             VStack(spacing: 20) {
                 Spacer()
-                if let selected = selected {
-                    Image(systemName: selected.icon)
+                FlippableCard(
+                    flipped: $flipped, front: Image(systemName: "questionmark")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80, height: 80)
-                        .id(selected.id)
+                        .foregroundColor(.secondary),
+                    back: Group {
+                        if let selected = selected {
+                            Image(systemName: selected.icon)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80, height: 80)
+                                .id(selected.id)
+                                .foregroundStyle(.gray)
+                        } else {
+                            Image(systemName: "questionmark")
+                        }
+                    }
+                )
+                if let selected = selected {
                     Text(selected.name)
                         .font(.title)
 #if os(iOS)
                         .bold()
 #endif
-                } else {
-                    Image(systemName: "questionmark.circle")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 80, height: 80)
-                        .foregroundColor(.secondary)
                 }
                 Spacer()
-                if !isAnimating, let selected = selected {
+                if let selected = selected {
                     Button(action: {
                         parentSelectedGame = selected
                         dismiss()
@@ -68,8 +77,6 @@ struct RandomGameView: View {
                         .font(.title3)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .backgroundStyle(.blue)
-                        .foregroundColor(.white)
                         .cornerRadius(12)
                 }
                 .buttonStyle(.bordered)
@@ -93,34 +100,17 @@ struct RandomGameView: View {
     
     private func pickRandom() {
         guard !games.isEmpty else { return }
+        selected = games.randomElement()
         isAnimating = true
+        flipped.toggle()
         
+        Task {
+            try await Task.sleep(nanoseconds: 600_000_000)
+            isAnimating = false
 #if os(iOS)
-        let impact = UIImpactFeedbackGenerator(style: .light)
-        let finalImpact = UINotificationFeedbackGenerator()
+            let finalImpact = UINotificationFeedbackGenerator()
+            finalImpact.notificationOccurred(.success)
 #endif
-        
-        let rounds = 10
-        let interval = 0.1
-        
-        for i in 0..<rounds {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * interval) {
-                withAnimation {
-                    selected = games.randomElement()
-                }
-                
-#if os(iOS)
-                if i < rounds - 1 {
-                    impact.impactOccurred(intensity: 0.7)
-                } else {
-                    finalImpact.notificationOccurred(.success)
-                }
-#endif
-                
-                if i == rounds - 1 {
-                    isAnimating = false
-                }
-            }
         }
     }
 }
@@ -128,3 +118,33 @@ struct RandomGameView: View {
 #Preview {
     RandomGameView(parentSelectedGame: .constant(nil))
 }
+
+struct FlippableCard<Front: View, Back: View>: View {
+    @Binding var flipped: Bool
+
+    let front: Front
+    let back: Back
+
+    var body: some View {
+        ZStack {
+            front
+                .opacity(flipped ? 0 : 1)
+            back
+                .opacity(flipped ? 1 : 0)
+                .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+        }
+        .frame(width: 140, height: 200)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(.white)
+                .shadow(radius: 5)
+        )
+        .rotation3DEffect(
+            .degrees(flipped ? 180 : 0),
+            axis: (x: 0, y: 1, z: 0),
+            perspective: 0.7
+        )
+        .animation(.easeInOut(duration: 0.6), value: flipped)
+    }
+}
+
