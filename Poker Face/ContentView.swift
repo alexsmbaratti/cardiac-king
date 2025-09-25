@@ -44,6 +44,7 @@ struct ContentView: View {
             }
             .navigationTitle("Cardiac King")
             .toolbar {
+#if os(iOS)
                 ToolbarItem(placement: .topBarTrailing, content: {
                     Button(action: {
                         showRandomGame = true
@@ -51,10 +52,8 @@ struct ContentView: View {
                         Label("Random Game", systemImage: "die.face.6")
                     })
                     .tint(.accentColor)
-#if !os(iOS)
-                    .disabled(openWindows.contains("quick-reference"))
-#endif
                 })
+#endif
                 if UIDevice.current.userInterfaceIdiom == .phone {
                     ToolbarItem(placement: .topBarTrailing, content: {
                         Button(action: handleQuickReferenceTap, label: {

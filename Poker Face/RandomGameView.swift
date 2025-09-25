@@ -59,7 +59,7 @@ struct RandomGameView: View {
                                 .scaleEffect(2)
                                 .padding(.all, 3.0)
                             case 8:
-                                CardView(card: Card(rank: .jack, suit: .diamond))
+                                CardView(card: Card(rank: .jack, suit: .spade))
                                     .scaleEffect(2)
                                     .padding(.all, 3.0)
                             default:
@@ -196,7 +196,8 @@ struct FlippableCard<Front: View, Back: View>: View {
             axis: (x: 0, y: 1, z: 0),
             perspective: 0.7
         )
-        .animation(.easeInOut(duration: 0.6), value: flipped)
+        .animation(.easeInOut(duration: 0.6), value: flipped) // TODO: Fix slight visual glitch on the flip
+        
     }
 }
 
