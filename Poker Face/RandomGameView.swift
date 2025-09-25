@@ -31,6 +31,10 @@ struct RandomGameView: View {
                         if let selected = selected {
                             switch selected.id { // TODO: Scaled CardViews are completely broken on visionOS
                                 // TODO: Clean up this view
+                            case 7:
+                                CardView(card: Card(rank: .queen, suit: .diamond))
+                                    .scaleEffect(2)
+                                    .padding(.all, 3.0)
                             case 11:
                                 CardView(card: Card(rank: .ace, suit: .heart))
                                     .scaleEffect(2)
