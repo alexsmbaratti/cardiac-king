@@ -63,7 +63,7 @@ struct GameDetailView: View {
                 Button(action: handleQuickReferenceTap, label: {
                     Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
                 })
-                .accessibilityIdentifier("universalQuickReferenceButton")
+                .accessibilityIdentifier("localQuickReferenceButton")
 #if !os(iOS)
                 .disabled(openWindows.contains("quick-reference"))
 #endif
@@ -112,7 +112,7 @@ struct NoGameSelectedView: View {
                 Button(action: handleQuickReferenceTap, label: {
                     Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
                 })
-                .accessibilityIdentifier("universalQuickReferenceButton")
+                .accessibilityIdentifier("localQuickReferenceButton")
 #if !os(iOS)
                 .disabled(openWindows.contains("quick-reference"))
 #endif

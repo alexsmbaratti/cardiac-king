@@ -16,10 +16,19 @@ final class Poker_FaceUITests: XCTestCase {
     }
 
     @MainActor
-    func testUniversalQuickReference() throws {
-        XCTAssertTrue(app.buttons["universalQuickReferenceButton"].isHittable)
-        app.buttons["universalQuickReferenceButton"].tap()
+    func testGlobalQuickReference() throws {
+        XCTAssertTrue(app.buttons["globalQuickReferenceButton"].isHittable)
+        app.buttons["globalQuickReferenceButton"].tap()
         XCTAssertTrue(app.staticTexts["Royal Flush"].isHittable)
+    }
+    
+    @MainActor
+    func testLocalQuickReference() throws {
+        XCTAssertTrue(app.staticTexts["Five-Card Draw"].isHittable)
+        app.staticTexts["Five-Card Draw"].tap()
+        XCTAssertTrue(app.buttons["localQuickReferenceButton"].isHittable)
+        app.buttons["localQuickReferenceButton"].tap()
+        XCTAssertTrue(app.staticTexts["Straight Flush"].isHittable)
     }
     
     @MainActor

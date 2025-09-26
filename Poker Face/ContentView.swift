@@ -61,7 +61,7 @@ struct ContentView: View {
                             Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
                         })
                         .tint(.accentColor)
-                        .accessibilityIdentifier("universalQuickReferenceButton")
+                        .accessibilityIdentifier("globalQuickReferenceButton")
 #if !os(iOS)
                         .disabled(openWindows.contains("quick-reference"))
 #endif
