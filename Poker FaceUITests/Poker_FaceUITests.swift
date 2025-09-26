@@ -23,6 +23,16 @@ final class Poker_FaceUITests: XCTestCase {
     }
     
     @MainActor
+    func testRandomGamePicker() throws {
+        XCTAssertTrue(app.buttons["randomGamePickerButton"].isHittable)
+        app.buttons["randomGamePickerButton"].tap()
+        XCTAssertFalse(app.buttons["playRandomGameButton"].isHittable)
+        XCTAssertTrue(app.buttons["pickRandomGameButton"].isHittable)
+        app.buttons["pickRandomGameButton"].tap()
+        XCTAssertTrue(app.buttons["playRandomGameButton"].isHittable)
+    }
+    
+    @MainActor
     func testScrewball() throws {
         XCTAssertTrue(app.staticTexts["Screwball"].isHittable)
         app.staticTexts["Screwball"].tap()

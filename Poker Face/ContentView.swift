@@ -52,6 +52,7 @@ struct ContentView: View {
                         Label("Random Game", systemImage: "die.face.6")
                     })
                     .tint(.accentColor)
+                    .accessibilityIdentifier("randomGamePickerButton")
                 })
 #endif
                 if UIDevice.current.userInterfaceIdiom == .phone {

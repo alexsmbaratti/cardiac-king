@@ -100,6 +100,7 @@ struct RandomGameView: View {
                             .cornerRadius(12)
                     }
                     .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("playRandomGameButton")
 #if os(iOS)
                     .tint(.accentColor)
 #endif
@@ -115,6 +116,7 @@ struct RandomGameView: View {
                         .frame(maxWidth: .infinity)
                         .cornerRadius(12)
                 }
+                .accessibilityIdentifier("pickRandomGameButton")
                 .buttonStyle(.bordered)
                 .disabled(isAnimating)
             }
