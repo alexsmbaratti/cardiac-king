@@ -24,6 +24,9 @@ struct HandsView: View {
                         Text(hand.name)
                             .font(.headline)
                             .foregroundStyle(.gray)
+                        Divider()
+                            .padding(.top, 22)
+                            .padding(.horizontal)
                     }
                     .padding(.horizontal)
                 }
