@@ -87,14 +87,19 @@ struct WatchAccentGradientBackground: ViewModifier {
     func body(content: Content) -> some View {
         content
             .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color.accentColor.opacity(0.5),
-                        Color.accentColor.opacity(0.2),
-                    ]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
+                Group {
+                    if !isLuminanceReduced {
+                        LinearGradient(
+                            gradient: Gradient(colors: [
+                                Color.accentColor.opacity(0.5),
+                                Color.accentColor.opacity(0.2),
+                            ]),
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    }
+                }
+                    .ignoresSafeArea()
             )
     }
 }
