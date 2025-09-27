@@ -10,16 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         HandsView()
-            .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color.accentColor.opacity(0.5),
-                        Color.accentColor.opacity(0.2),
-                    ]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            )
+            .watchAccentGradientBackground()
     }
 }
 
@@ -43,7 +34,7 @@ struct HandsView: View {
 
 struct TinyCardStackView: View {
     var cards: [Card]
-    
+
     var body: some View {
         ZStack {
             ForEach(0..<cards.count, id: \.self) { index in
@@ -58,7 +49,7 @@ struct TinyCardStackView: View {
 
 struct TinyCardView: View {
     var card: Card
-    
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
@@ -78,7 +69,7 @@ struct TinyCardView: View {
         }
         .frame(width: 50, height: 70)
     }
-    
+
     var label: some View {
         VStack {
             Text(card.rank.symbol)
@@ -87,6 +78,32 @@ struct TinyCardView: View {
             Image(systemName: card.suit.symbol)
                 .foregroundColor(card.suit.color)
         }
+    }
+}
+
+struct WatchAccentGradientBackground: ViewModifier {
+    @Environment(\.isLuminanceReduced) private var isLuminanceReduced
+    
+    func body(content: Content) -> some View {
+        content
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color.accentColor.opacity(0.5),
+                        Color.accentColor.opacity(0.2),
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            )
+    }
+}
+
+
+
+extension View {
+    func watchAccentGradientBackground() -> some View {
+        self.modifier(WatchAccentGradientBackground())
     }
 }
 
