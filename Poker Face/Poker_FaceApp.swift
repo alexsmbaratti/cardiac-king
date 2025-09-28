@@ -16,7 +16,7 @@ struct Poker_FaceApp: App {
             ContentView(openWindows: $openWindows)
         }
 
-#if !os(iOS)
+#if !os(iOS) // TODO: Evaluate if this behavior works well on iPadOS 26 windowing
         WindowGroup(id: "quick-reference") {
             QuickReferenceView(isShowing: .constant(true))
                 .frame(minWidth: 600, maxWidth: 600, minHeight: 600)
