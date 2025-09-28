@@ -29,8 +29,27 @@ class CardUtils {
         return cards.count == 5
     }
     
-    static func isInSequence(cards: [Card]) -> Bool {
-        return false
+    static func isSequenceHand(cards: [Card]) -> Bool {
+        guard cards.count >= 2 else { return false }
+
+        let values = cards.map { $0.rank.rawValue }.sorted()
+
+        var isSequential = true
+        for i in 1..<values.count {
+            if values[i] != values[i - 1] + 1 {
+                isSequential = false
+                break
+            }
+        }
+        if isSequential { return true }
+
+        let aceLowValues = cards.map { $0.rank == .ace ? 1 : $0.rank.rawValue }.sorted()
+        for i in 1..<aceLowValues.count {
+            if aceLowValues[i] != aceLowValues[i - 1] + 1 {
+                return false
+            }
+        }
+        return true
     }
     
     static func allDistinctRanks(cards: [Card]) -> Bool {
@@ -42,15 +61,48 @@ class CardUtils {
     }
     
     static func getHand(cards: [Card]) -> Hand {
-        if (self.isFullHand(cards: cards) && self.allOfSameSuit(cards: cards) && self.containsRanks(ranks: [.ace, .king, .queen, .jack, .ten], cards: cards)) {
+        guard self.isFullHand(cards: cards) else { return .high_card }
+
+        if self.allOfSameSuit(cards: cards) && self.containsRanks(ranks: [.ace, .king, .queen, .jack, .ten], cards: cards) {
             return .royal_flush
-        } else if (self.isFullHand(cards: cards) && self.allOfSameSuit(cards: cards) && !self.isCyclic(cards: cards) && self.allDistinctRanks(cards: cards) && self.isInSequence(cards: cards)) {
-            return .straight_flush
-        } else if (self.isFullHand(cards: cards) && self.allOfSameSuit(cards: cards)) {
-            return .flush
-        } else {
-            return .high_card
         }
+
+        if self.allOfSameSuit(cards: cards) && self.isSequenceHand(cards: cards) {
+            return .straight_flush
+        }
+
+        if let rankCounts = self.rankCounts(cards: cards) {
+            if rankCounts.values.contains(4) {
+                return .four_of_a_kind
+            } else if rankCounts.values.contains(3) && rankCounts.values.contains(2) {
+                return .full_house
+            } else if rankCounts.values.contains(3) {
+                return .three_of_a_kind
+            } else if rankCounts.values.filter({ $0 == 2 }).count == 2 {
+                return .two_pair
+            } else if rankCounts.values.contains(2) {
+                return .one_pair
+            }
+        }
+
+        if self.allOfSameSuit(cards: cards) {
+            return .flush
+        }
+
+        if self.isSequenceHand(cards: cards) {
+            return .straight
+        }
+
+        return .high_card
+    }
+    
+    private static func rankCounts(cards: [Card]) -> [Rank: Int]? {
+        guard !cards.isEmpty else { return nil }
+        var counts: [Rank: Int] = [:]
+        for card in cards {
+            counts[card.rank, default: 0] += 1
+        }
+        return counts
     }
 }
 
