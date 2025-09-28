@@ -21,6 +21,16 @@ func containsRankInFullHand() {
     #expect(CardUtils.containsRank(rank: .king, cards: cards))
 }
 
+let handTestCases: [(hand: [Card], expected: Hand)] = Hand.allCases.map { handType in
+    (handType.exampleHand, handType)
+}
+
+@Test(arguments: handTestCases)
+func exampleHands(hand: [Card], expected: Hand) {
+    let result = CardUtils.getHand(cards: hand)
+    #expect(result == expected, "Expected \(expected) but got \(result)")
+}
+
 final class CardUtilsTests: XCTestCase {
     
     func testAllOfSameSuit() throws {
@@ -51,8 +61,4 @@ final class CardUtilsTests: XCTestCase {
 //        XCTAssertEqual(CardUtils.getHand(cards: [Card(rank: .ace, suit: .heart), Card(rank: .king, suit: .heart), Card(rank: .queen, suit: .heart), Card(rank: .jack, suit: .heart), Card(rank: .ten, suit: .heart)]), .royal_flush)
 //        XCTAssertEqual(CardUtils.getHand(cards: [Card(rank: .nine, suit: .spade), Card(rank: .eight, suit: .spade), Card(rank: .seven, suit: .spade), Card(rank: .six, suit: .spade), Card(rank: .five, suit: .spade)]), .straight_flush)
 //    }
-    
-    func testExampleHands() throws {
-        XCTAssertEqual(CardUtils.getHand(cards: Hand.royal_flush.exampleHand), .royal_flush)
-    }
 }
