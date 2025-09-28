@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA6FE9B72E88AC6F008D1B33 /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = FA6FE9B62E88AC6F008D1B33 /* TestPlan.xctestplan */; };
+		FA6FE9B82E88AC6F008D1B33 /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = FA6FE9B62E88AC6F008D1B33 /* TestPlan.xctestplan */; };
 		FAB4FB94294ACEE000B7B1D1 /* CardUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4FB93294ACEE000B7B1D1 /* CardUtilsTests.swift */; };
 		FAB4FB95294ACF0400B7B1D1 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF31A929467FCA00B9F75C /* Card.swift */; };
 		FAB4FB99294AE6BE00B7B1D1 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4FB98294AE6BE00B7B1D1 /* Game.swift */; };
@@ -76,6 +78,7 @@
 /* Begin PBXFileReference section */
 		FA3D67EF2D7C0E4F002837A0 /* Poker FaceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Poker FaceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA66D1842D7579820047B07C /* Poker-Face-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Poker-Face-Info.plist"; sourceTree = SOURCE_ROOT; };
+		FA6FE9B62E88AC6F008D1B33 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		FAB4FB8A294ACED600B7B1D1 /* Poker FaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Poker FaceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB4FB93294ACEE000B7B1D1 /* CardUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardUtilsTests.swift; sourceTree = "<group>"; };
 		FAB4FB98294AE6BE00B7B1D1 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -193,6 +196,7 @@
 		FAEF318D29467EA100B9F75C = {
 			isa = PBXGroup;
 			children = (
+				FA6FE9B62E88AC6F008D1B33 /* TestPlan.xctestplan */,
 				FAEF319829467EA100B9F75C /* Poker Face */,
 				FAB4FB8B294ACED600B7B1D1 /* Poker FaceTests */,
 				FABCA43D2D74D55300CE57F8 /* Poker Face watchOS */,
@@ -418,6 +422,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6FE9B72E88AC6F008D1B33 /* TestPlan.xctestplan in Resources */,
 				FAFF88FF2E7921F30027B9E3 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +443,7 @@
 				FAFF89002E7921F30027B9E3 /* AppIcon.icon in Resources */,
 				FAEF31A129467EA200B9F75C /* Preview Assets.xcassets in Resources */,
 				FAD893DA2953F46200B3C871 /* games.json in Resources */,
+				FA6FE9B82E88AC6F008D1B33 /* TestPlan.xctestplan in Resources */,
 				FAEF319E29467EA200B9F75C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

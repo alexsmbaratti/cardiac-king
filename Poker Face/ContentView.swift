@@ -55,7 +55,7 @@ struct ContentView: View {
                     .accessibilityIdentifier("randomGamePickerButton")
                 })
 #endif
-                if UIDevice.current.userInterfaceIdiom == .phone {
+                if UIDevice.current.userInterfaceIdiom == .phone { // iPad will always show the localQuickReferenceButton
                     ToolbarItem(placement: .topBarTrailing, content: {
                         Button(action: handleQuickReferenceTap, label: {
                             Label("Quick Reference", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")

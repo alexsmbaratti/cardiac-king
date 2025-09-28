@@ -11,24 +11,30 @@ final class Poker_FaceUITests: XCTestCase {
     let app = XCUIApplication()
 
     override func setUpWithError() throws {
+        UserDefaults.standard.set(true, forKey: "hasSeenDisclaimer")
         continueAfterFailure = false
         app.launch()
     }
 
     @MainActor
     func testGlobalQuickReference() throws {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            throw XCTSkip("iPad hides the global quick reference button")
+        }
         XCTAssertTrue(app.buttons["globalQuickReferenceButton"].isHittable)
         app.buttons["globalQuickReferenceButton"].tap()
         XCTAssertTrue(app.staticTexts["Royal Flush"].isHittable)
+        XCTAssertFalse(app.buttons["localQuickReferenceButton"].isHittable)
     }
     
     @MainActor
     func testLocalQuickReference() throws {
-        XCTAssertTrue(app.staticTexts["Five-Card Draw"].isHittable)
-        app.staticTexts["Five-Card Draw"].tap()
+        XCTAssertTrue(app.staticTexts["Screwball"].isHittable)
+        app.staticTexts["Screwball"].tap()
         XCTAssertTrue(app.buttons["localQuickReferenceButton"].isHittable)
         app.buttons["localQuickReferenceButton"].tap()
         XCTAssertTrue(app.staticTexts["Straight Flush"].isHittable)
+        XCTAssertFalse(app.buttons["globalQuickReferenceButton"].isHittable)
     }
     
     @MainActor

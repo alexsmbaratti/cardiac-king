@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "01D15DCD-FDBB-4EE7-A1E6-F5DE129AEE1D",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Poker Face.xcodeproj",
+        "identifier" : "FAB4FB89294ACED600B7B1D1",
+        "name" : "Poker FaceTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Poker Face.xcodeproj",
+        "identifier" : "FA3D67EE2D7C0E4F002837A0",
+        "name" : "Poker FaceUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

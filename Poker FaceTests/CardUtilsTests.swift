@@ -6,6 +6,20 @@
 //
 
 import XCTest
+import Testing
+
+@Test
+func containsRankInFullHand() {
+    let cards: [Card] = [
+        Card(rank: .ace, suit: .heart),
+        Card(rank: .king, suit: .heart),
+        Card(rank: .queen, suit: .heart),
+        Card(rank: .jack, suit: .heart),
+        Card(rank: .ten, suit: .heart)
+    ]
+    
+    #expect(CardUtils.containsRank(rank: .king, cards: cards))
+}
 
 final class CardUtilsTests: XCTestCase {
     
@@ -25,10 +39,6 @@ final class CardUtilsTests: XCTestCase {
     func testContainsRanks() throws {
         XCTAssertTrue(CardUtils.containsRanks(ranks: [.ace, .king], cards: [Card(rank: .ace, suit: .heart), Card(rank: .king, suit: .heart), Card(rank: .queen, suit: .heart), Card(rank: .jack, suit: .heart), Card(rank: .ten, suit: .heart)]))
         XCTAssertFalse(CardUtils.containsRanks(ranks: [.ace, .two], cards: [Card(rank: .ace, suit: .heart), Card(rank: .king, suit: .heart), Card(rank: .queen, suit: .heart), Card(rank: .jack, suit: .heart), Card(rank: .ten, suit: .heart)]))
-    }
-    
-    func testIsFullHand() throws {
-        XCTAssertTrue(CardUtils.containsRank(rank: .king, cards: [Card(rank: .ace, suit: .heart), Card(rank: .king, suit: .heart), Card(rank: .queen, suit: .heart), Card(rank: .jack, suit: .heart), Card(rank: .ten, suit: .heart)]))
     }
     
 // Works in Progress
