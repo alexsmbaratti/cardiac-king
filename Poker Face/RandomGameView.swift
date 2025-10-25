@@ -28,6 +28,7 @@ struct RandomGameView: View {
                         .frame(width: 80, height: 80)
                         .foregroundStyle(.gray),
                     back: Group {
+                        // TODO: Add option to use alternate animation
                         if let selected = selected {
                             switch selected.id { // TODO: Scaled CardViews are completely broken on visionOS
                                 // TODO: Clean up this view
@@ -41,13 +42,13 @@ struct RandomGameView: View {
                                     .padding(.all, 3.0)
                             case 5:
                                 ZStack {
-                                    CardView(card: Card(rank: .seven, suit: .heart))
+                                    CardView(card: Card(rank: .ace, suit: .heart))
                                         .offset(x: fannedOut ? -25 : 0)
                                                             .animation(.spring(response: 0.5, dampingFraction: 0.7), value: fannedOut)
-                                    CardView(card: Card(rank: .two, suit: .club))
+                                    CardView(card: Card(rank: .ace, suit: .club))
                                         .offset(x: fannedOut ? 0 : 0)
                                                             .animation(.spring(response: 0.5, dampingFraction: 0.7), value: fannedOut)
-                                    CardView(card: Card(rank: .seven, suit: .diamond))
+                                    CardView(card: Card(rank: .five, suit: .diamond))
                                         .offset(x: fannedOut ? 25 : 0)
                                                             .animation(.spring(response: 0.5, dampingFraction: 0.7), value: fannedOut)
                                 }
