@@ -191,7 +191,7 @@
         "name": "Football",
         "icon": "american.football",
         "wildCards": [],
-        "wildRanks": [ 4 ],
+        "wildRanks": [ 3 ],
         "wildCustoms": [ "Sixes if paired with an Ace" ],
         "winningHands": [],
         "rankValues": [
