@@ -135,39 +135,6 @@ struct DisclaimerView: View {
     }
 }
 
-struct AccentGradientBackground: ViewModifier {
-    @Environment(\.colorScheme) private var colorScheme
-    
-    func body(content: Content) -> some View {
-        content
-#if !os(visionOS)
-            .background(
-                Group {
-                    if #available(iOS 26.0, *) {
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color.accentColor.opacity(colorScheme == .light ? 1 : 0.5),
-                                Color.clear
-                            ]),
-                            startPoint: .top,
-                            endPoint: .center
-                        )
-                        .ignoresSafeArea(edges: [.top, .leading, .trailing])
-                    }
-                }
-            )
-#endif
-    }
-}
-
-
-
-extension View {
-    func accentGradientBackground() -> some View {
-        self.modifier(AccentGradientBackground())
-    }
-}
-
 
 #Preview {
     ContentView(openWindows: .constant([]))

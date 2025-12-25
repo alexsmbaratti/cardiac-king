@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA1FD98B2EFCE1A5003AF214 /* SeizosUI in Frameworks */ = {isa = PBXBuildFile; productRef = FA1FD98A2EFCE1A5003AF214 /* SeizosUI */; };
+		FA1FD98E2EFCE265003AF214 /* SeizosUI in Frameworks */ = {isa = PBXBuildFile; productRef = FA1FD98D2EFCE265003AF214 /* SeizosUI */; };
+		FA1FD9902EFCE26D003AF214 /* SeizosUI in Frameworks */ = {isa = PBXBuildFile; productRef = FA1FD98F2EFCE26D003AF214 /* SeizosUI */; };
 		FA6FE9B72E88AC6F008D1B33 /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = FA6FE9B62E88AC6F008D1B33 /* TestPlan.xctestplan */; };
 		FA6FE9B82E88AC6F008D1B33 /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = FA6FE9B62E88AC6F008D1B33 /* TestPlan.xctestplan */; };
 		FAB4FB94294ACEE000B7B1D1 /* CardUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4FB93294ACEE000B7B1D1 /* CardUtilsTests.swift */; };
@@ -148,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1FD98E2EFCE265003AF214 /* SeizosUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1FD9902EFCE26D003AF214 /* SeizosUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,12 +167,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1FD98B2EFCE1A5003AF214 /* SeizosUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA1FD98C2EFCE265003AF214 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FAB4FB8B294ACED600B7B1D1 /* Poker FaceTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +217,7 @@
 				FA3D67F02D7C0E4F002837A0 /* Poker FaceUITests */,
 				FAEF319729467EA100B9F75C /* Products */,
 				FAFF88FE2E7921F30027B9E3 /* AppIcon.icon */,
+				FA1FD98C2EFCE265003AF214 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -306,6 +320,7 @@
 			);
 			name = "Poker Face watchOS";
 			packageProductDependencies = (
+				FA1FD98D2EFCE265003AF214 /* SeizosUI */,
 			);
 			productName = "Poker Face watchOS Watch App";
 			productReference = FABCA43C2D74D55300CE57F8 /* Poker Face watchOS.app */;
@@ -328,6 +343,7 @@
 			);
 			name = "Poker Face visionOS";
 			packageProductDependencies = (
+				FA1FD98F2EFCE26D003AF214 /* SeizosUI */,
 			);
 			productName = "Poker Face visionOS";
 			productReference = FABCA5272D74E66200CE57F8 /* Poker Face visionOS.app */;
@@ -389,6 +405,9 @@
 				Base,
 			);
 			mainGroup = FAEF318D29467EA100B9F75C;
+			packageReferences = (
+				FA1FD9892EFCE1A5003AF214 /* XCRemoteSwiftPackageReference "seizos-kit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FAEF319729467EA100B9F75C /* Products */;
 			projectDirPath = "";
@@ -875,6 +894,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -910,6 +930,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -984,6 +1005,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA1FD9892EFCE1A5003AF214 /* XCRemoteSwiftPackageReference "seizos-kit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexsmbaratti/seizos-kit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA1FD98A2EFCE1A5003AF214 /* SeizosUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA1FD9892EFCE1A5003AF214 /* XCRemoteSwiftPackageReference "seizos-kit" */;
+			productName = SeizosUI;
+		};
+		FA1FD98D2EFCE265003AF214 /* SeizosUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA1FD9892EFCE1A5003AF214 /* XCRemoteSwiftPackageReference "seizos-kit" */;
+			productName = SeizosUI;
+		};
+		FA1FD98F2EFCE26D003AF214 /* SeizosUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA1FD9892EFCE1A5003AF214 /* XCRemoteSwiftPackageReference "seizos-kit" */;
+			productName = SeizosUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FAEF318E29467EA100B9F75C /* Project object */;
 }

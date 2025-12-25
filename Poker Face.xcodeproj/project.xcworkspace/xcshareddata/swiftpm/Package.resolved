@@ -1,0 +1,15 @@
+{
+  "originHash" : "e0670c95c47abc077c9f0bfbd261dd9b82cee6a1c3397adace555834415f9347",
+  "pins" : [
+    {
+      "identity" : "seizos-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/alexsmbaratti/seizos-kit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5475c96735529479d8257b11bf2fffee7dffd2d0"
+      }
+    }
+  ],
+  "version" : 3
+}

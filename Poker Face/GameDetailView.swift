@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SeizosUI
 
 struct GameDetailView: View {
     var game: Game
@@ -69,7 +70,7 @@ struct GameDetailView: View {
 #endif
             })
         }
-        .accentGradientBackground()
+        .gradientBackground(color: .accentColor)
     }
     
     private func handleQuickReferenceTap() {
@@ -119,7 +120,7 @@ struct NoGameSelectedView: View {
             })
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .accentGradientBackground()
+        .gradientBackground(color: .accentColor)
     }
     
     private func handleQuickReferenceTap() {

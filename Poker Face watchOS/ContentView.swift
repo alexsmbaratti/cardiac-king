@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import SeizosUI
 
 struct ContentView: View {
     var body: some View {
         HandsView()
-            .watchAccentGradientBackground()
+            .gradientBackground(color: .accentColor)
     }
 }
 
@@ -81,37 +82,6 @@ struct TinyCardView: View {
             Image(systemName: card.suit.symbol)
                 .foregroundColor(card.suit.color)
         }
-    }
-}
-
-struct WatchAccentGradientBackground: ViewModifier {
-    @Environment(\.isLuminanceReduced) private var isLuminanceReduced
-    
-    func body(content: Content) -> some View {
-        content
-            .background(
-                Group {
-                    if !isLuminanceReduced {
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color.accentColor.opacity(0.5),
-                                Color.accentColor.opacity(0.2),
-                            ]),
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                    }
-                }
-                    .ignoresSafeArea()
-            )
-    }
-}
-
-
-
-extension View {
-    func watchAccentGradientBackground() -> some View {
-        self.modifier(WatchAccentGradientBackground())
     }
 }
 
