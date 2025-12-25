@@ -30,18 +30,18 @@ struct GameDetailView: View {
                     Divider()
                 }
                 if game.hasWilds() {
-                    Heading("Wild Cards")
+                    LeadingHeading("Wild Cards")
                     CardBunchReferenceView(cardBunches: game.getAllWildCards())
                 }
                 if game.hasRankValues() {
-                    Heading("Special Rank Values")
+                    LeadingHeading("Special Rank Values")
                     CardBunchReferenceView(cardBunches: game.rankValues!)
                 }
                 if game.hasWinningHands() {
-                    Heading("Winning Hands")
+                    LeadingHeading("Winning Hands")
                     CardBunchReferenceView(cardBunches: game.winningHands)
                 }
-                Heading("How to Play")
+                LeadingHeading("How to Play")
                 HowToView(
                     steps: game.steps,
                     deferredFormat: game.deferToFormat ?? false ? game.format : nil,
@@ -49,7 +49,7 @@ struct GameDetailView: View {
                     openWindows: $openWindows
                 )
                 if game.hasVariants() {
-                    Heading("Variants")
+                    LeadingHeading("Variants")
                     VariantsView(variants: game.variants)
                 }
             }
