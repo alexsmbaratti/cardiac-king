@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SeizosUI
 
 // TODO: Abstract into sheet and window
 struct QuickReferenceView: View {
@@ -50,18 +51,12 @@ struct HandReferenceView: View {
         VStack {
             HStack {
                 VStack {
-                    HStack {
-                        Text(hand.name)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        Spacer()
-                    }
-                    HStack {
-                        Text(hand.description)
-                            .font(.callout)
-                            .multilineTextAlignment(.leading)
-                        Spacer()
-                    }
+                    LeadingText(hand.name)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    LeadingText(hand.description)
+                        .font(.callout)
+                        .multilineTextAlignment(.leading)
                 }
                 .multilineTextAlignment(.leading)
                 CardStackView(cards: hand.exampleHand)

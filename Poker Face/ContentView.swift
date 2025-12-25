@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SeizosUI
 
 struct ContentView: View {
     @State var showRandomGame = false
@@ -28,10 +29,7 @@ struct ContentView: View {
                 List(selection: $selectedGame) {
                     ForEach(games) { game in
                         NavigationLink(value: game, label: {
-                            HStack {
-                                Text(game.name)
-                                Spacer()
-                            }
+                            LeadingText(game.name)
                         })
                     }
                 }

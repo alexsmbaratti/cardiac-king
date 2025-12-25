@@ -23,13 +23,10 @@ struct GameDetailView: View {
         ScrollView {
             Group {
                 if let format = game.format {
-                    HStack {
-                        Text("\(format.name) Format")
-                            .foregroundStyle(.secondary)
-                            .font(.headline)
-                            .italic()
-                        Spacer()
-                    }
+                    LeadingText("\(format.name) Format")
+                        .foregroundStyle(.secondary)
+                        .font(.headline)
+                        .italic()
                     Divider()
                 }
                 if game.hasWilds() {
@@ -196,14 +193,10 @@ struct HowToView: View {
                 )
             }
         } else {
-            HStack {
-                Spacer()
-                Text("No Steps")
-                    .font(.title)
-                    .fontWeight(.medium)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
+            CenteredText("No Steps")
+                .font(.title)
+                .fontWeight(.medium)
+                .foregroundColor(.secondary)
             .padding(.all)
             .aspectRatio(contentMode: .fill)
             .background(
@@ -233,14 +226,10 @@ struct VariantsView: View {
                     .shadow(radius: 7)
             )
         } else {
-            HStack {
-                Spacer()
-                Text("No Variants")
-                    .font(.title)
-                    .fontWeight(.medium)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
+            CenteredText("No Variants")
+                .font(.title)
+                .fontWeight(.medium)
+                .foregroundColor(.secondary)
             .padding(.all)
             .aspectRatio(contentMode: .fill)
             .background(
@@ -276,19 +265,13 @@ struct VariantView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text(variant.name)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                Spacer()
-            }
-            HStack {
-                Text(variant.description)
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .multilineTextAlignment(.leading)
-                Spacer()
-            }
+            LeadingText(variant.name)
+                .font(.title2)
+                .fontWeight(.bold)
+            LeadingText(variant.description)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
+                .multilineTextAlignment(.leading)
         }
     }
 }
@@ -339,22 +322,16 @@ struct StepView: View {
             }
             .frame(height: 50)
             VStack {
-                HStack {
-                    Text(step.description)
-                        .font(.title3)
-                        .fontWeight(.bold)
+                LeadingText(step.description)
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.leading)
+                if step.subtext != nil {
+                    LeadingText(step.subtext!)
+                        .font(.caption)
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.leading)
-                    Spacer()
-                }
-                if step.subtext != nil {
-                    HStack {
-                        Text(step.subtext!)
-                            .font(.caption)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.leading)
-                        Spacer()
-                    }
                 }
             }
             .padding(.leading)
