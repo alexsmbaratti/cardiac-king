@@ -22,7 +22,7 @@ struct HandsView: View {
                 ForEach(Hand.allCases, id: \.rawValue) { hand in
                     VStack {
                         TinyCardStackView(cards: hand.exampleHand)
-                        Text(hand.name)
+                        CenteredText(hand.name)
                             .font(.headline)
                             .foregroundStyle(.gray)
                         Divider()
