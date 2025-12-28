@@ -61,11 +61,9 @@ struct TinyCardView: View {
                 .shadow(radius: 5)
             if card.isFaceUp {
                 HStack {
-                    VStack {
-                        label
-                        Spacer()
-                    }
-                    .dynamicTypeSize(.medium)
+                    label
+                        .pinnedToTop()
+                        .dynamicTypeSize(.medium)
                     Spacer()
                 }
                 .padding(.all, 3.0)
@@ -73,7 +71,7 @@ struct TinyCardView: View {
         }
         .frame(width: 50, height: 70)
     }
-
+    
     var label: some View {
         VStack {
             Text(card.rank.symbol)

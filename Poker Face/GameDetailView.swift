@@ -145,32 +145,29 @@ struct HowToView: View {
     var body: some View {
         if !steps.isEmpty {
             if deferredFormat != nil && collapseDeferredSteps {
-                HStack {
-                    Spacer()
-                    VStack {
-                        Text("Play Standard \(deferredFormat!.name)")
+                VStack {
+                    Text("Play Standard \(deferredFormat!.name)")
+                        .font(.headline)
+                        .fontWeight(.medium)
+                        .foregroundColor(.secondary)
+                    Button(action: {
+                        collapseDeferredSteps = false
+                    }) {
+                        Label("Show Steps", systemImage: "list.bullet")
+                            .fontWeight(.semibold)
                             .font(.headline)
-                            .fontWeight(.medium)
-                            .foregroundColor(.secondary)
-                        Button(action: {
-                            collapseDeferredSteps = false
-                        }) {
-                            Label("Show Steps", systemImage: "list.bullet")
-                                .fontWeight(.semibold)
-                                .font(.headline)
-                                .padding()
+                            .padding()
 #if !os(visionOS)
-                                .foregroundColor(.white) // Needed to prevent green text on iOS
-                                .background(.primary) // Needed to give button accent color on iOS
+                            .foregroundColor(.white) // Needed to prevent green text on iOS
+                            .background(.primary) // Needed to give button accent color on iOS
 #else
-                                .backgroundStyle(.primary)
+                            .backgroundStyle(.primary)
 #endif
-                                .cornerRadius(20)
-                        }
-                        .accessibilityIdentifier("showDeferredStepsButton")
+                            .cornerRadius(20)
                     }
-                    Spacer()
+                    .accessibilityIdentifier("showDeferredStepsButton")
                 }
+                .horizontallyCentered()
                 .padding(.all)
                 .aspectRatio(contentMode: .fill)
                 .background(

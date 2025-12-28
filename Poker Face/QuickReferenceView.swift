@@ -48,21 +48,19 @@ struct HandReferenceView: View {
     var hand: Hand
     
     var body: some View {
-        VStack {
-            HStack {
-                VStack {
-                    LeadingText(hand.name)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                    LeadingText(hand.description)
-                        .font(.callout)
-                        .multilineTextAlignment(.leading)
-                }
-                .multilineTextAlignment(.leading)
-                CardStackView(cards: hand.exampleHand)
+        HStack {
+            VStack {
+                LeadingText(hand.name)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                LeadingText(hand.description)
+                    .font(.callout)
+                    .multilineTextAlignment(.leading)
             }
-            Spacer()
+            .multilineTextAlignment(.leading)
+            CardStackView(cards: hand.exampleHand)
         }
+        .pinnedToTop()
     }
 }
 
@@ -102,17 +100,13 @@ struct FaceUpCardView: View {
     
     var body: some View {
         HStack {
-            VStack {
-                label
-                Spacer()
-            }
-            .dynamicTypeSize(.medium)
+            label
+                .pinnedToTop()
+                .dynamicTypeSize(.medium)
             Spacer()
-            VStack {
-                label
-                Spacer()
-            }
-            .rotationEffect(.degrees(180))
+            label
+                .pinnedToTop()
+                .rotationEffect(.degrees(180))
         }
         .padding(.all, 3.0)
     }
