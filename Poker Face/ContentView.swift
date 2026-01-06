@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SeizosUI
 
 struct ContentView: View {
     @State var showRandomGame = false
@@ -28,10 +29,7 @@ struct ContentView: View {
                 List(selection: $selectedGame) {
                     ForEach(games) { game in
                         NavigationLink(value: game, label: {
-                            HStack {
-                                Text(game.name)
-                                Spacer()
-                            }
+                            LeadingText(game.name)
                         })
                     }
                 }
@@ -132,39 +130,6 @@ struct DisclaimerView: View {
             .padding()
         }
         .interactiveDismissDisabled()
-    }
-}
-
-struct AccentGradientBackground: ViewModifier {
-    @Environment(\.colorScheme) private var colorScheme
-    
-    func body(content: Content) -> some View {
-        content
-#if !os(visionOS)
-            .background(
-                Group {
-                    if #available(iOS 26.0, *) {
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color.accentColor.opacity(colorScheme == .light ? 1 : 0.5),
-                                Color.clear
-                            ]),
-                            startPoint: .top,
-                            endPoint: .center
-                        )
-                        .ignoresSafeArea(edges: [.top, .leading, .trailing])
-                    }
-                }
-            )
-#endif
-    }
-}
-
-
-
-extension View {
-    func accentGradientBackground() -> some View {
-        self.modifier(AccentGradientBackground())
     }
 }
 

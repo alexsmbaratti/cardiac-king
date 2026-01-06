@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SeizosUI
 
 struct GameDetailView: View {
     var game: Game
@@ -22,28 +23,25 @@ struct GameDetailView: View {
         ScrollView {
             Group {
                 if let format = game.format {
-                    HStack {
-                        Text("\(format.name) Format")
-                            .foregroundStyle(.secondary)
-                            .font(.headline)
-                            .italic()
-                        Spacer()
-                    }
+                    LeadingText("\(format.name) Format")
+                        .foregroundStyle(.secondary)
+                        .font(.headline)
+                        .italic()
                     Divider()
                 }
                 if game.hasWilds() {
-                    Heading(text: "Wild Cards")
+                    LeadingHeading("Wild Cards")
                     CardBunchReferenceView(cardBunches: game.getAllWildCards())
                 }
                 if game.hasRankValues() {
-                    Heading(text: "Special Rank Values")
+                    LeadingHeading("Special Rank Values")
                     CardBunchReferenceView(cardBunches: game.rankValues!)
                 }
                 if game.hasWinningHands() {
-                    Heading(text: "Winning Hands")
+                    LeadingHeading("Winning Hands")
                     CardBunchReferenceView(cardBunches: game.winningHands)
                 }
-                Heading(text: "How to Play")
+                LeadingHeading("How to Play")
                 HowToView(
                     steps: game.steps,
                     deferredFormat: game.deferToFormat ?? false ? game.format : nil,
@@ -51,7 +49,7 @@ struct GameDetailView: View {
                     openWindows: $openWindows
                 )
                 if game.hasVariants() {
-                    Heading(text: "Variants")
+                    LeadingHeading("Variants")
                     VariantsView(variants: game.variants)
                 }
             }
@@ -69,7 +67,7 @@ struct GameDetailView: View {
 #endif
             })
         }
-        .accentGradientBackground()
+        .gradientBackground(color: .accentColor)
     }
     
     private func handleQuickReferenceTap() {
@@ -119,7 +117,7 @@ struct NoGameSelectedView: View {
             })
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .accentGradientBackground()
+        .gradientBackground(color: .accentColor)
     }
     
     private func handleQuickReferenceTap() {
@@ -147,32 +145,29 @@ struct HowToView: View {
     var body: some View {
         if !steps.isEmpty {
             if deferredFormat != nil && collapseDeferredSteps {
-                HStack {
-                    Spacer()
-                    VStack {
-                        Text("Play Standard \(deferredFormat!.name)")
+                VStack {
+                    Text("Play Standard \(deferredFormat!.name)")
+                        .font(.headline)
+                        .fontWeight(.medium)
+                        .foregroundColor(.secondary)
+                    Button(action: {
+                        collapseDeferredSteps = false
+                    }) {
+                        Label("Show Steps", systemImage: "list.bullet")
+                            .fontWeight(.semibold)
                             .font(.headline)
-                            .fontWeight(.medium)
-                            .foregroundColor(.secondary)
-                        Button(action: {
-                            collapseDeferredSteps = false
-                        }) {
-                            Label("Show Steps", systemImage: "list.bullet")
-                                .fontWeight(.semibold)
-                                .font(.headline)
-                                .padding()
+                            .padding()
 #if !os(visionOS)
-                                .foregroundColor(.white) // Needed to prevent green text on iOS
-                                .background(.primary) // Needed to give button accent color on iOS
+                            .foregroundColor(.white) // Needed to prevent green text on iOS
+                            .background(.primary) // Needed to give button accent color on iOS
 #else
-                                .backgroundStyle(.primary)
+                            .backgroundStyle(.primary)
 #endif
-                                .cornerRadius(20)
-                        }
-                        .accessibilityIdentifier("showDeferredStepsButton")
+                            .cornerRadius(20)
                     }
-                    Spacer()
+                    .accessibilityIdentifier("showDeferredStepsButton")
                 }
+                .horizontallyCentered()
                 .padding(.all)
                 .aspectRatio(contentMode: .fill)
                 .background(
@@ -195,14 +190,10 @@ struct HowToView: View {
                 )
             }
         } else {
-            HStack {
-                Spacer()
-                Text("No Steps")
-                    .font(.title)
-                    .fontWeight(.medium)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
+            CenteredText("No Steps")
+                .font(.title)
+                .fontWeight(.medium)
+                .foregroundColor(.secondary)
             .padding(.all)
             .aspectRatio(contentMode: .fill)
             .background(
@@ -232,14 +223,10 @@ struct VariantsView: View {
                     .shadow(radius: 7)
             )
         } else {
-            HStack {
-                Spacer()
-                Text("No Variants")
-                    .font(.title)
-                    .fontWeight(.medium)
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
+            CenteredText("No Variants")
+                .font(.title)
+                .fontWeight(.medium)
+                .foregroundColor(.secondary)
             .padding(.all)
             .aspectRatio(contentMode: .fill)
             .background(
@@ -275,19 +262,13 @@ struct VariantView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text(variant.name)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                Spacer()
-            }
-            HStack {
-                Text(variant.description)
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .multilineTextAlignment(.leading)
-                Spacer()
-            }
+            LeadingText(variant.name)
+                .font(.title2)
+                .fontWeight(.bold)
+            LeadingText(variant.description)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
+                .multilineTextAlignment(.leading)
         }
     }
 }
@@ -311,19 +292,6 @@ struct CardBunchView: View {
             }
         }
         .frame(height: 80)
-    }
-}
-
-private struct Heading: View {
-    var text: String
-    
-    var body: some View {
-        HStack {
-            Text(text)
-                .font(.title2)
-                .fontWeight(.bold)
-            Spacer()
-        }
     }
 }
 
@@ -351,22 +319,16 @@ struct StepView: View {
             }
             .frame(height: 50)
             VStack {
-                HStack {
-                    Text(step.description)
-                        .font(.title3)
-                        .fontWeight(.bold)
+                LeadingText(step.description)
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.leading)
+                if step.subtext != nil {
+                    LeadingText(step.subtext!)
+                        .font(.caption)
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.leading)
-                    Spacer()
-                }
-                if step.subtext != nil {
-                    HStack {
-                        Text(step.subtext!)
-                            .font(.caption)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.leading)
-                        Spacer()
-                    }
                 }
             }
             .padding(.leading)

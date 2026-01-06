@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import SeizosUI
 
 struct ContentView: View {
     var body: some View {
         HandsView()
-            .watchAccentGradientBackground()
+            .gradientBackground(color: .accentColor)
     }
 }
 
@@ -21,7 +22,7 @@ struct HandsView: View {
                 ForEach(Hand.allCases, id: \.rawValue) { hand in
                     VStack {
                         TinyCardStackView(cards: hand.exampleHand)
-                        Text(hand.name)
+                        CenteredText(hand.name)
                             .font(.headline)
                             .foregroundStyle(.gray)
                         Divider()
@@ -60,11 +61,9 @@ struct TinyCardView: View {
                 .shadow(radius: 5)
             if card.isFaceUp {
                 HStack {
-                    VStack {
-                        label
-                        Spacer()
-                    }
-                    .dynamicTypeSize(.medium)
+                    label
+                        .pinnedToTop()
+                        .dynamicTypeSize(.medium)
                     Spacer()
                 }
                 .padding(.all, 3.0)
@@ -72,7 +71,7 @@ struct TinyCardView: View {
         }
         .frame(width: 50, height: 70)
     }
-
+    
     var label: some View {
         VStack {
             Text(card.rank.symbol)
@@ -81,37 +80,6 @@ struct TinyCardView: View {
             Image(systemName: card.suit.symbol)
                 .foregroundColor(card.suit.color)
         }
-    }
-}
-
-struct WatchAccentGradientBackground: ViewModifier {
-    @Environment(\.isLuminanceReduced) private var isLuminanceReduced
-    
-    func body(content: Content) -> some View {
-        content
-            .background(
-                Group {
-                    if !isLuminanceReduced {
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color.accentColor.opacity(0.5),
-                                Color.accentColor.opacity(0.2),
-                            ]),
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                    }
-                }
-                    .ignoresSafeArea()
-            )
-    }
-}
-
-
-
-extension View {
-    func watchAccentGradientBackground() -> some View {
-        self.modifier(WatchAccentGradientBackground())
     }
 }
 
